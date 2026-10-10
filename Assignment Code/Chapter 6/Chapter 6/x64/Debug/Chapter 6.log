@@ -1,0 +1,4 @@
+﻿  main.c
+C:\CProgram\Chapter 6\main.c(6,12): warning C4013: 'questionOne' undefined; assuming extern returning int
+C:\CProgram\Chapter 6\main.c(9,12): warning C4013: 'questionTwo' undefined; assuming extern returning int
+  Chapter 6.vcxproj -> C:\CProgram\Chapter 6\x64\Debug\Chapter 6.exe

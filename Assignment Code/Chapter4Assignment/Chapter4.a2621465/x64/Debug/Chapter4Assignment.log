@@ -1,0 +1,16 @@
+﻿  main.c
+  questionFour.c
+  Generating Code...
+C:\CProgram\Chapter4Assignment\main.c(5,12): warning C4013: 'questionOne' undefined; assuming extern returning int
+C:\CProgram\Chapter4Assignment\main.c(9,12): warning C4013: 'questionTwo' undefined; assuming extern returning int
+C:\CProgram\Chapter4Assignment\main.c(13,14): warning C4013: 'questionThree' undefined; assuming extern returning int
+C:\CProgram\Chapter4Assignment\main.c(17,13): warning C4013: 'questionFour' undefined; assuming extern returning int
+C:\CProgram\Chapter4Assignment\questionFour.c(17,10): warning C4473: 'scanf_s' : not enough arguments passed for format string
+      C:\CProgram\Chapter4Assignment\questionFour.c(17,10):
+      placeholders and their parameters expect 2 variadic arguments, but 1 were provided
+      C:\CProgram\Chapter4Assignment\questionFour.c(17,10):
+      the missing variadic argument 2 is required by format string '%c'
+      C:\CProgram\Chapter4Assignment\questionFour.c(17,10):
+      this argument is used as a buffer size
+  
+  Chapter4Assignment.vcxproj -> C:\CProgram\Chapter4Assignment\x64\Debug\Chapter4Assignment.exe
