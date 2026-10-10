@@ -1,0 +1,38 @@
+//library imports at the top
+import java.lang.String;
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+         char char1 = 'C';
+         //since a char is a primitive, NO INHERENT BEHAVIOR
+         //thus we need an outside class to manipulate the char
+         Scanner input = new Scanner(System.in);
+         
+         if(Character.isUpperCase(char1)){
+             System.out.println("You entered an uppercase letter");
+         }
+         //declare as an object
+         //ALL BEHAVIOR IN STRING IS INTERNAL
+        String example = new String("this is an example string");
+        //or declare by reference like a primitive
+        String studentName = "Max"; 
+        String studentLN = "                            Steel";
+        //this returns the character at a position in the String
+        //for this example, it is looking at Max, and the letter at the first
+        //index is a capital M
+        char placement = studentName.charAt(0);
+        System.out.println(placement);
+        //Next we can print the length of the string
+        System.out.println(studentName.length());
+        //I wanna add two strings together and am too uptight to use the +
+        System.out.println(studentName.concat(studentLN));
+        //to upper
+        System.out.println(studentName.toUpperCase());
+        //to lower
+        System.out.println(studentName.toLowerCase());
+        //life saver for Java, gets rid of ALL white space
+        System.out.println(studentLN.trim());
+    }
+
+}

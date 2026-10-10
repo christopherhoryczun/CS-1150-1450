@@ -1,0 +1,49 @@
+class main {
+	public static void Main (Strings[] args) {
+    int score = 95;
+    //combine statements when it makes sense to do so, normally if one of the statements is moreso a modifyer of another and not a completely different path to another answer IE cloudy is fairly irrelevant except for display purposes with snowing and thus we can combine
+    //if A is false, do I have to check B?
+    //the && expression needs both to be true to be true
+    //the idea is to have the most likely false input first as it is evaluated first
+    // if(B&&A){
+        
+    // }
+    // //if A is true, do we have to evaluate B?
+    // //NOPE, if one is true, all is true
+    // if(A||B){
+        
+    // }
+    if(snowing==true){
+        System.out.println("It is snowing and cloudy");
+    }
+    //print out whatever grade is associated with the score hard-coded in the line previous
+    // if (score >= 90.0)
+    //     System.out.print("A");
+    //     //if the if statement is not executed, when we check the else-if. If the if is executed, then we skip all of the else-ifs and the else
+    // else if (score >= 80.0)
+    //     System.out.print("B");
+    // else if (score >= 70.0)
+    //     System.out.print("C");
+    // else if (score >= 60.0)
+    //     System.out.print("D");
+    // else
+    //     System.out.print("F");
+    if (score >= 90.0){
+        System.out.print("A");
+        //when you have cascading if statements, remember they are ALL checked, even if the first if is true 
+
+    }
+    if (score >= 80.0){//BEGIN IF
+        System.out.print("B");
+    }//END OF IF
+    if (score >= 70.0){
+        System.out.print("C");
+        //this y is within the scope of the if statement and NOTHING ELSE
+        if(score >= 75){}
+    }
+    if (score >= 60.0)
+        System.out.print("D");
+    else
+        System.out.print("F");
+    }//END OF MAIN METHOD
+}//END OF MAIN CLASS

@@ -1,0 +1,55 @@
+/*
+Online Java - IDE, Code Editor, Compiler
+
+Online Java is a quick and easy tool that helps you to build, compile, test your programs online.
+*/
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        game game = new game();
+    }
+}
+//this is the driver class that manipulates the game board
+class game{
+    private board gameClass = new board();
+    private boolean move = true;//if true, it is players turn
+    private int turns = 0;
+    private boolean didWin = false;
+    
+    game(){
+        while(!didWin)
+            if(turns%2 == 0){
+                gameClass.makeMove('X');
+                turns++;
+            }
+            else{
+                gameClass.makeMove('O');
+                turns++;
+            }
+            if(turns == 8){
+                didWin = true;
+            }
+    }
+    
+    
+}
+class board{
+    //variables private
+    private char[] gameBoard = {'0', '1', '2', '3', '4', '5', '6', '7', '8'};
+    
+    board(){}
+    //methods public
+    public void printBoard(){
+        System.out.println(gameBoard[0] + "|" + gameBoard[1] + "|" + gameBoard[2]);
+        System.out.println(gameBoard[3] + "|" + gameBoard[4] + "|" + gameBoard[5]);
+        System.out.println(gameBoard[6] + "|" + gameBoard[7] + "|" + gameBoard[8]);
+    }
+    //this is how we do stuff
+    public void makeMove(char player){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter a number between 0-8");
+        int move = input.nextInt();
+        gameBoard[move] = player;
+        printBoard();
+    }
+}

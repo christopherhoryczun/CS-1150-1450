@@ -1,0 +1,59 @@
+/*
+
+*/
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        final int fInt = 10;
+        printInt(10);
+        int choice = 0;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter a choice 1-3");
+        choice = input.nextInt();
+        System.out.println(choice);
+        double total = 0.0;
+        //flag is a computer science term to show whether we do something or not
+        boolean flag = true;
+            if((choice >0) && (choice < 4)){
+                if(choice == 1){
+                    total+= 5.99;
+                }
+                if(choice == 2){
+                    total+= 10.99;
+                }
+                if(choice == 3){
+                    total+=20.99;
+                }
+                Scanner input2 = new Scanner(System.in);
+                System.out.println("Please enter a number 1-3 for the options");
+                int choice2 = input.nextInt();
+                if(choice2 > 0 && choice2 < 4){
+                    if(choice2 == 1){
+                        total+= 15.99;
+                    }
+                    if(choice2 == 2){
+                        total+= 110.99;
+                    }
+                    if(choice2 == 3){
+                        total+=120.99;
+                        success = true;
+                    }
+                }
+                else{
+                    System.out.println("Incorrect value entered");
+                    flag = false;
+                }
+            }
+            else{
+                System.out.println("Incorrect choice entered");
+                flag = false;
+            }
+            if(success){
+                System.out.println("Total is: " + total);
+            }
+        }
+        public static void printInt(int x){
+            System.out.println(x);
+        }
+        
+    }
