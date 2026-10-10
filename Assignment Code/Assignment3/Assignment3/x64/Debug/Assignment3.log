@@ -1,0 +1,5 @@
+﻿  main.c
+C:\CProgram\Assignment3\main.c(7,13): warning C4013: 'questionOne' undefined; assuming extern returning int
+C:\CProgram\Assignment3\main.c(11,13): warning C4013: 'questionTwo' undefined; assuming extern returning int
+C:\CProgram\Assignment3\main.c(15,15): warning C4013: 'questionThree' undefined; assuming extern returning int
+  Assignment3.vcxproj -> C:\CProgram\Assignment3\x64\Debug\Assignment3.exe

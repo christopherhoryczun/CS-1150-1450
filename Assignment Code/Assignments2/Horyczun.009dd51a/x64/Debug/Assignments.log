@@ -1,0 +1,5 @@
+﻿  main.c
+C:\CProgram\Assignments\main.c(4,15): warning C4013: 'question1' undefined; assuming extern returning int
+C:\CProgram\Assignments\main.c(5,16): warning C4013: 'question2' undefined; assuming extern returning int
+C:\CProgram\Assignments\main.c(6,16): warning C4013: 'question3' undefined; assuming extern returning int
+  Assignments.vcxproj -> C:\CProgram\Assignments\x64\Debug\HoryczunChristopherAssigment2.exe
