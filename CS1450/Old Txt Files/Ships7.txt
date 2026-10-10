@@ -1,0 +1,7 @@
+1 3 55000 Cargo Sea Haul
+2 1 149000 Cruise Queen Mary
+5 1 44900 Navy USS America
+5 4 84000 Cruise Voyager
+6 2 15000 Cruise Parrot Paradise
+8 3 12000 Cargo Trade Wind
+9 2 240000 Tanker Titan
