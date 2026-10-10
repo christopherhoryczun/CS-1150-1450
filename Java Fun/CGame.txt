@@ -1,0 +1,201 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <iomanip>
+
+using namespace std;
+
+// Odometer class
+class Odometer {
+private:
+    double miles;
+
+public:
+    Odometer() : miles(0.0) {}
+
+    double getMiles() {
+        return miles;
+    }
+
+    void updateMiles(double milesTraveled) {
+        miles += milesTraveled;
+    }
+};
+
+// RaceCar class
+class RaceCar {
+private:
+    string driver;
+    int number;
+    double averageSpeed;
+    bool finished;
+    Odometer odometer;
+
+public:
+    RaceCar(string driver, int number, double averageSpeed) 
+        : driver(driver), number(number), averageSpeed(averageSpeed), finished(false) {}
+
+    string getDriver() {
+        return driver;
+    }
+
+    int getNumber() {
+        return number;
+    }
+
+    double getAverageSpeed() {
+        return averageSpeed;
+    }
+
+    bool isFinished() {
+        return finished;
+    }
+
+    void setFinished(bool finished) {
+        this->finished = finished;
+    }
+
+    Odometer& getOdometer() {
+        return odometer;
+    }
+};
+
+// Function declarations
+void displayRaceCar(const RaceCar& raceCar);
+void displayAllRaceCars(const vector<RaceCar>& raceCars);
+void raceSimulation(vector<RaceCar>& raceCars, RaceCar& userCar);
+bool isRaceFinished(const vector<RaceCar>& raceCars);
+void writeRaceCarDetailsToFile(const vector<RaceCar>& raceCars);
+
+int main() {
+    // Create a list of race cars
+    vector<RaceCar> raceCars = {
+        RaceCar("Shrek", 8, 80),
+        RaceCar("Fiona", 11, 115),
+        RaceCar("Donkey", 17, 70),
+        RaceCar("Dragon", 18, 100),
+        RaceCar("Pinocchio", 45, 85),
+        RaceCar("Farquaad", 42, 75),
+    };
+
+    // Let the user select a car
+    int userChoice;
+    cout << "Choose your car by entering the number (1-6): \n";
+    for (int i = 0; i < raceCars.size(); i++) {
+        cout << (i + 1) << ". " << raceCars[i].getDriver() << " (Speed: " 
+             << raceCars[i].getAverageSpeed() << " mph)\n";
+    }
+
+    cin >> userChoice;
+    RaceCar userCar = raceCars[userChoice - 1];
+    cout << "You have chosen: " << userCar.getDriver() << "\n\n";
+
+    // Display all cars at the start
+    displayAllRaceCars(raceCars);
+
+    // Race simulation
+    raceSimulation(raceCars, userCar);
+
+    // Write race details to file
+    writeRaceCarDetailsToFile(raceCars);
+
+    return 0;
+}
+
+void displayRaceCar(const RaceCar& raceCar) {
+    cout << "Finished: " << raceCar.getDriver() << " with "
+         << raceCar.getOdometer().getMiles() << " miles\n";
+}
+
+void displayAllRaceCars(const vector<RaceCar>& raceCars) {
+    cout << "Race Cars at Start of Race\n";
+    cout << "--------------------------------------------------\n";
+    cout << "Race Car\tDriver\t\tAverage Speed\tMiles Raced\n";
+    cout << "--------------------------------------------------\n";
+
+    for (const auto& car : raceCars) {
+        cout << car.getNumber() << "\t\t" << car.getDriver() << "\t\t"
+             << fixed << setprecision(2) << car.getAverageSpeed() << " mph\t\t" << 0.0 << " miles\n";
+    }
+}
+
+void raceSimulation(vector<RaceCar>& raceCars, RaceCar& userCar) {
+    double minuteRaced = 0.0;
+    int iterationCounter = 1;
+    bool raceComplete = false;
+
+    cout << "\nAll cars are ready - let the race begin in 5..4..3..2..1\n";
+
+    while (!raceComplete) {
+        minuteRaced += 0.15;
+        cout << "Racing time ... " << fixed << setprecision(2) << minuteRaced << " hours\n";
+
+        if (iterationCounter % 4 == 1) {
+            for (auto& raceCar : raceCars) {
+                if (!raceCar.isFinished()) {
+                    double speed = raceCar.getAverageSpeed(); // in mph
+                    double milesThisInterval = speed * 0.15; // 0.15 hours
+                    raceCar.getOdometer().updateMiles(milesThisInterval);
+
+                    if (raceCar.getOdometer().getMiles() >= 500) {
+                        raceCar.setFinished(true);
+                        displayRaceCar(raceCar);
+                    }
+                }
+            }
+
+            // Check if the user car has finished
+            if (!userCar.isFinished()) {
+                double userSpeed = userCar.getAverageSpeed();
+                double userMilesThisInterval = userSpeed * 0.15;
+                userCar.getOdometer().updateMiles(userMilesThisInterval);
+                cout << "Your car (" << userCar.getDriver() << ") is racing...\n";
+
+                if (userCar.getOdometer().getMiles() >= 500) {
+                    userCar.setFinished(true);
+                    displayRaceCar(userCar);
+                }
+            }
+
+            raceComplete = isRaceFinished(raceCars);
+        }
+
+        iterationCounter++;
+    }
+
+    // Determine if the user has won
+    if (userCar.isFinished()) {
+        cout << "\nCongratulations! You won the race!\n";
+    } else {
+        cout << "\nSorry, you lost the race.\n";
+    }
+}
+
+bool isRaceFinished(const vector<RaceCar>& raceCars) {
+    for (const auto& car : raceCars) {
+        if (!car.isFinished()) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void writeRaceCarDetailsToFile(const vector<RaceCar>& raceCars) {
+    ofstream resultsFile("RaceDetails.txt");
+
+    resultsFile << "Race Car Details\n";
+
+    for (const auto& car : raceCars) {
+        resultsFile << "Race Car #: " << car.getNumber() << "\n";
+        resultsFile << "Driver:     " << car.getDriver() << "\n";
+        resultsFile << "Miles:      " << car.getOdometer().getMiles() << "\n\n";
+    }
+
+    resultsFile.close();
+    cout << "\nFind the file here: RaceDetails.txt\n";
+}
+
+//g++ -o racegame racegame.cpp
+//./racegame
+
