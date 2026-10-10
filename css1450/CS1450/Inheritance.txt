@@ -1,0 +1,95 @@
+// Account.java
+public class Account {
+    private String name;
+    private String acctNum;
+    private double amount;
+
+    // Default constructor
+    public Account() {
+        this.name = null;
+        this.acctNum = null;
+        this.amount = 0.0;
+    }
+
+    // Parameterized constructor
+    public Account(String name, String acctNum, double amount) {
+        this.name = name;
+        this.acctNum = acctNum;
+        this.amount = amount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAcctNum() {
+        return acctNum;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void display() {
+        System.out.println("This is not a premium account");
+    }
+}
+
+// PremiumAccount.java
+public class PremiumAccount extends Account {
+
+    public PremiumAccount(String name, String acctNum, double amount) {
+        super(name, acctNum, amount);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("This is a premium account");
+    }
+}
+
+// Bank.java
+public class Bank {
+    private Account[] accounts;
+    private int count;
+
+    public Bank() {
+        accounts = new Account[10];
+        count = 0;
+    }
+
+    public void addAccount(Account acc) {
+        if (count < 10) {
+            accounts[count++] = acc;
+        } else {
+            System.out.println("Bank is full. Cannot add more accounts.");
+        }
+    }
+
+    public void printAccounts() {
+        for (int i = 0; i < count; i++) {
+            System.out.println("Name:\t\t" + accounts[i].getName());
+            System.out.println("Acct #:\t\t" + accounts[i].getAcctNum());
+            System.out.println("Amt:\t\t$" + accounts[i].getAmount());
+            accounts[i].display();
+            System.out.println(); // Blank line between accounts
+        }
+    }
+}
+
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+        Bank bank = new Bank();
+
+        Account acc1 = new Account("Student Smith", "1111-1111-1111-1111", 200.0);
+        Account acc2 = new Account("Student Johnson", "2222-2222-2222-2222", 350.0);
+        PremiumAccount acc3 = new PremiumAccount("Student Brown", "3333-3333-3333-3333", 1000.0);
+
+        bank.addAccount(acc1);
+        bank.addAccount(acc2);
+        bank.addAccount(acc3);
+
+        bank.printAccounts();
+    }
+}
